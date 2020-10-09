@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationView"
 import { Login } from "./Auth/Login"
 import { Register } from "./Auth/Register"
+import { NavBar } from "./Navbar/Navbar"
 
 export const Nutshell = () => (
     <>
@@ -11,6 +12,7 @@ export const Nutshell = () => (
           if (localStorage.getItem("nutshell_customer")) {
             return (
               <>
+                <NavBar />
                 <ApplicationViews />
               </>
             );
