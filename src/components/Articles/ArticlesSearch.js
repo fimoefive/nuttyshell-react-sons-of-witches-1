@@ -4,6 +4,7 @@ import "./Articles.css"
 
 export const ArticleSearch = () => {
     const { setSearchTerms } = useContext(ArticleContext)
+    console.log("articleSearch() works")
 
     useEffect(() => {
 		setSearchTerms("")

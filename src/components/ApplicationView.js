@@ -9,7 +9,7 @@ import { Home } from "./Home"
 export const ApplicationViews = (props) => {
     return (
         <>
-            <Route exact path= "/">
+            <Route exact path="/">
                 <Home />
             </Route>
 

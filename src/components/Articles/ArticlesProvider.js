@@ -3,6 +3,7 @@ import React, { useState, createContext } from "react"
 export const ArticleContext = createContext();
 
 export const ArticleProvider = (props) => {
+    console.log("provider works")
     const [articles, setArticles] = useState();
     const [searchTerms, setSearchTerms] = useState();
 

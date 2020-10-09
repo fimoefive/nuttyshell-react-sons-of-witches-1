@@ -7,6 +7,7 @@ import "./Articles.css"
 export const ArticleList = () => {
     const { articles, getArticles, searchTerms } = useContext(ArticleContext)
     const [ filteredArticles, setFilteredArticles ] = useState([])
+    console.log("articleList() works")
 
     useEffect(() => {
         getArticles()
