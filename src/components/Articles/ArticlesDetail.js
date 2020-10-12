@@ -11,10 +11,17 @@ export const ArticleDetail = () => {
 	const { articleId } = useParams();
 	const history = useHistory();
 
+	const user = parseInt(localStorage.getItem("nutshell_customer"))
+
+	const [owned, setOwned] = useState(false)
+
 	useEffect(() => {
 		getArticleById(articleId)
 			.then((response) => {
 				setArticle(response)
+				if(user === response.user.id) {
+					setOwned(true)
+				}
 			})
 	}, [])
 
@@ -23,7 +30,9 @@ export const ArticleDetail = () => {
 			<h3 className="article__name">{article.title}</h3>
 			<div className="animal__summary">{article.summary}</div>
             <div className="animal__URL">{article.URL}</div>
-			<button onClick={
+			<button 
+			hidden={!owned}
+			onClick={
 				() => {
 					deleteArticle(article.id)
 						.then(() => {
@@ -31,7 +40,9 @@ export const ArticleDetail = () => {
 						})
 				}}>Delete Article
 			</button>
-			<button onClick={() => {
+			<button 
+			hidden={!owned}
+			onClick={() => {
 				history.push(`/articles/edit/${article.id}`)
 			}}>Edit</button>
 		</section>
