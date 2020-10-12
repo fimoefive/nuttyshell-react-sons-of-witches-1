@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticlesProvider"
-import "./Animal.css"
+import "./Articles.css"
 import { useParams, useHistory } from "react-router-dom"
 
 export const ArticleDetail = () => {

@@ -4,18 +4,20 @@ import { ArticleCard } from "./ArticlesCard"
 import { useHistory } from "react-router-dom"
 import "./Articles.css"
 
-export const ArticleList = () => {
+export const ArticlesList = () => {
     const { articles, getArticles, searchTerms } = useContext(ArticleContext)
     const [ filteredArticles, setFilteredArticles ] = useState([])
     console.log("articleList() works")
 
     useEffect(() => {
+        console.log("first useeffect")
         getArticles()
     }, [])
 
     const history = useHistory()
 
     useEffect(() => {
+        console.log(searchTerms, "hi")
         if(searchTerms !== "") {
             const subset = articles.filter(article => article.title.toLowerCase().includes(searchTerms.toLowerCase().trim()))
             setFilteredArticles(subset)

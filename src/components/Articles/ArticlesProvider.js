@@ -2,12 +2,13 @@ import React, { useState, createContext } from "react"
 
 export const ArticleContext = createContext();
 
-export const ArticleProvider = (props) => {
+export const ArticlesProvider = (props) => {
     console.log("provider works")
     const [articles, setArticles] = useState();
     const [searchTerms, setSearchTerms] = useState();
 
     const getArticles = () => {
+        console.log("getArticles")
         return fetch(`http://localhost:8088/articles?_expand=user`)
             .then(response => response.json())
             .then(setArticles)
@@ -48,9 +49,9 @@ export const ArticleProvider = (props) => {
 
     return (
         <ArticleContext.Provider value={{
-            articles, getArticles, addArticle, getArticleById, deleteArticle, editArticle, setSearchTerms, searchTerms
+            articles, getArticles, editArticle, deleteArticle, addArticle, getArticleById, setSearchTerms, searchTerms
         }}>
-            {props.childern}
+            {props.children}
             </ArticleContext.Provider>
     )
 }
