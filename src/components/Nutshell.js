@@ -4,6 +4,7 @@ import { ApplicationViews } from "./ApplicationView"
 import { Login } from "./Auth/Login"
 import { Register } from "./Auth/Register"
 import { NavBar } from "./Navbar/Navbar"
+import "./Nutshell.css"
 
 export const Nutshell = () => (
     <>
@@ -22,10 +23,10 @@ export const Nutshell = () => (
         }}
       />
   
-      <Route path="/login">
+      <Route exact path="/login">
         <Login />
       </Route>
-      <Route path="/register">
+      <Route exact path="/register">
         <Register />
       </Route>
     </>
