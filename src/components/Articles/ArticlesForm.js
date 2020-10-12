@@ -3,14 +3,14 @@ import { ArticleContext } from "../Articles/ArticlesProvider"
 import { useHistory, useParams } from "react-router-dom"
 
 export const ArticleForm = () => {
-    const { getArticles, getArticleById, editArticle } = useContext(ArticleContext)
+    const { getArticles, getArticleById, editArticle, addArticle } = useContext(ArticleContext)
 
     const [article, setArticle] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const {articleId} = useParams()
     const history = useHistory()
 
-    const handleControlledImputChange = (event) => {
+    const handleControlledInputChange = (event) => {
         const newArticle = {...article}
         newArticle[event.target.title] = event.target.value
         setArticle(newArticle)
@@ -33,7 +33,8 @@ export const ArticleForm = () => {
     const constructArticleObject = () => {
         if(parseInt(article.title) === 0) {
             window.alert("Select a title")
-        } else {
+        } 
+        else {
             setIsLoading(true)
             if(articleId){
                 editArticle({
@@ -42,6 +43,15 @@ export const ArticleForm = () => {
                     summary: article.summary,
                     URL: article.URL,
                     userId: parseInt(article.userId)
+                })
+                .then(() => history.push("/articles"))
+            }
+            else {
+                addArticle({
+                    title: article.title,
+                    summary: article.summary,
+                    URL: article.URL,
+                    userId: parseInt(localStorage.getItem("nutshell_customer"))
                 })
                 .then(() => history.push("/articles"))
             }
@@ -56,7 +66,7 @@ export const ArticleForm = () => {
                     <label htmlFor="articleTitle">Article Title</label>
                     <input type="text" id="articleTitle" title="title" required autoFocus className="from-control"
                     placeholder="Title"
-                    onChange={handleControlledImputChange}
+                    onChange={handleControlledInputChange}
                     defaultValue={article.title}/>
                 </div>
             </fieldset>
@@ -65,7 +75,7 @@ export const ArticleForm = () => {
                     <label htmlFor="articleSummary">Article Summary</label>
                     <input type="text" id="articleSummary" title="summary" required autoFocus className="from-control"
                     placeholder="Summary"
-                    onChange={handleControlledImputChange}
+                    onChange={handleControlledInputChange}
                     defaultValue={article.summary}/>
                 </div>
             </fieldset>
@@ -74,7 +84,7 @@ export const ArticleForm = () => {
                     <label htmlFor="articleURL">Article URL</label>
                     <input type="text" id="articleURL" title="URL" required autoFocus className="from-control"
                     placeholder="URL"
-                    onChange={handleControlledImputChange}
+                    onChange={handleControlledInputChange}
                     defaultValue={article.URL}/>
                 </div>
             </fieldset>

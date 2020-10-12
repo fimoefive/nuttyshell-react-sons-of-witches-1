@@ -31,7 +31,6 @@ export const ArticlesProvider = (props) => {
         return fetch(`http://localhost:8088/articles/${articleId}`, {
             method: "DELETE"
         })
-            .then(getArticles)
     }
 
     const editArticle = article => {
