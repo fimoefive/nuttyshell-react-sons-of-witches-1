@@ -28,5 +28,4 @@ export const EventProvider = (props) => {
         }}>
             {props.children}
         </EventContext.Provider>
-    )
-};
+    )};
