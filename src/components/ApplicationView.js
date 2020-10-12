@@ -15,8 +15,7 @@ export const ApplicationViews = () => {
             </Route>
             
             <ArticlesProvider>
-                <Route path="/articles">
-                    <p>Test</p>
+                <Route exact path="/articles">
                     <ArticleSearch />
                     <ArticlesList />
                 </Route>
