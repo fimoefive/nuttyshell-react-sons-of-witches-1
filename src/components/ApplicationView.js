@@ -6,33 +6,38 @@ import { ArticleSearch } from "./Articles/ArticlesSearch"
 import { ArticlesList } from "./Articles/ArticlesList"
 import { ArticleDetail } from "./Articles/ArticlesDetail"
 import { Home } from "./Home"
+import { FriendsList } from "./Friends/FriendsList"
+import { FriendsProvider } from "./Friends/FriendsProvider"
 
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <Home />
-            </Route>
-            
+            <FriendsProvider>
+                <Route exact path="/">
+                    <Home />
+                    <FriendsList />
+                </Route>
+            </FriendsProvider>
+
             <ArticlesProvider>
                 <Route exact path="/articles">
                     <ArticleSearch />
                     <ArticlesList />
                 </Route>
             </ArticlesProvider>
-            
+
             <ArticlesProvider>
                 <Route exact path="/articles/detail/:articleId(\d+)">
                     <ArticleDetail />
                 </Route>
             </ArticlesProvider>
-            
+
             <ArticlesProvider>
                 <Route exact path="/articles/create">
                     <ArticleForm />
                 </Route>
             </ArticlesProvider>
-            
+
             <ArticlesProvider>
                 <Route exact path="/articles/edit/:articleId(\d+)">
                     <ArticleForm />
