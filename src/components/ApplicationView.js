@@ -1,16 +1,16 @@
-import React from "react"
+import React from "react";
 import { Route } from "react-router-dom"
 import { ArticleForm } from "./Articles/ArticlesForm"
 import { ArticlesProvider } from "./Articles/ArticlesProvider"
 import { ArticleSearch } from "./Articles/ArticlesSearch"
 import { ArticlesList } from "./Articles/ArticlesList"
 import { ArticleDetail } from "./Articles/ArticlesDetail"
-import { Home } from "./Home"
+import { Home } from "./Home";
 import { EventForm } from "./Events/EventForm";
 import { EventProvider } from "./Events/EventProvider";
-import { EventSearch } from "./Events/EventsSearch";
+import { EventSearch } from "./Events/EventSearch";
 import { EventList } from "./Events/EventList";
-import { EventDetail } from "./Events/EventsDetail";
+import { EventDetail } from "./Events/EventDetail";
 
 export const ApplicationViews = () => {
     return (
@@ -44,31 +44,30 @@ export const ApplicationViews = () => {
                 </Route>
             </ArticlesProvider>
 
-            <EventsProvider>
+            <EventProvider>
                 <Route exact path="/events">
                     <EventSearch />
                     <EventList />
                 </Route>
-            </EventsProvider>
+            </EventProvider>
 
-            <EventsProvider>
+            <EventProvider>
                 <Route exact path="/events/detail/:eventId(\d+)">
                     <EventDetail />
                 </Route>
-            </EventsProvider>
+            </EventProvider>
 
-            <EventsProvider>
+            <EventProvider>
                 <Route exact path="/events/create">
                     <EventForm />
                 </Route>
-            </EventsProvider>
+            </EventProvider>
 
-            <EventsProvider>
+            <EventProvider>
                 <Route exact path="/events/edit/:eventId(\d+)">
                     <EventForm />
                 </Route>
-            </EventsProvider>
-
+            </EventProvider>
         </>
     )
 }

@@ -17,14 +17,14 @@ export const EventDetail = () => {
         console.log("useEffect", eventId)
         getEventById(eventId)
             .then((response) => {
-                setAnimal(response)
-                setLocation(response.location)
+                setEvent(response)
+                // setLocation(response.location)
             })
     }, [])
 
     return (
         <section className="event">
-            <h3 className="event__name">{animal.name}</h3>
+            <h3 className="event__name">{event.name}</h3>
             <div className="event__description">{event.description}</div>
             <div className="event__location">Location: {location.name}</div>
 
