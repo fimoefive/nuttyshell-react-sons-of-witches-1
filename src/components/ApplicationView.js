@@ -9,10 +9,9 @@ import { Home } from "./Home"
 
 import { ChatProvider } from "./Chat/ChatProvider"
 import { ChatForm } from "./Chat/ChatForm"
-import { ChatSearch } from "./Chat/ChatSearch"
 import { ChatList } from "./Chat/ChatList"
 import { ChatDetail } from "./Chat/ChatDetail"
-
+import { ChatSearch } from "./Chat/ChatSearch"
 
 
 export const ApplicationViews = () => {
@@ -49,15 +48,21 @@ export const ApplicationViews = () => {
 
 
 
+
             <ChatProvider>
-                <Route path="/chats/create">
+                <Route exact path="/chats/create">
+                    <ChatForm />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/chats/edit/:chatId(\d+)">
                     <ChatForm />
                 </Route>
             </ChatProvider>
 
             <ChatProvider>
                 <Route exact path="/chats">
-                    {/* <ChatSearch /> */}
                     <ChatList />
                 </Route>
             </ChatProvider>
@@ -67,9 +72,6 @@ export const ApplicationViews = () => {
                     <ChatDetail />
                 </Route>
             </ChatProvider>
-
-
-
 
         </>
     )

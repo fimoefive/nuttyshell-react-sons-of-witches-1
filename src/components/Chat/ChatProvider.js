@@ -2,6 +2,11 @@ import React, { useState, createContext } from "react"
 
 export const ChatContext = createContext()
 
+const getChatById = (id) => {
+    return fetch(`http://localhost:8088/messages/${id}?_expand=user`)
+        .then(res => res.json())
+}
+
 export const ChatProvider = (props) => {
     const [messages, setMessages] = useState([])
     const [searchTerms, setSearchTerms] = useState("")
@@ -23,12 +28,7 @@ export const ChatProvider = (props) => {
             .then(getChat)
     }
 
-    const getChatById = (id) => {
-        return fetch(`http://localhost:8088/messages/${id}`)
-            .then(res => res.json())
-    }
-
-    const deleteChat = chatId => {
+    const deleteChat = (chatId) => {
         return fetch(`http://localhost:8088/messages/${chatId}`, {
             method: "DELETE"
         })
@@ -54,3 +54,4 @@ export const ChatProvider = (props) => {
         </ChatContext.Provider>
     )
 }
+

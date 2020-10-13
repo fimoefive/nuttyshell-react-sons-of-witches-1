@@ -18,11 +18,9 @@ export const ChatList = () => {
     // searchTerms will cause a change
     useEffect(() => {
         if (searchTerms !== "") {
-            // If the search field is not blank, display matching messages
-            const subset = messages.filter(chat => chat.messages.toLowerCase().includes(searchTerms))
+            const subset = messages.filter(chat => chat.renderedMessage.toLowerCase().includes(searchTerms))
             setFiltered(subset)
         } else {
-            // If the search field is blank, display all messages
             setFiltered(messages)
         }
     }, [searchTerms, messages])
