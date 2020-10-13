@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { EventContext } from "../Events/EventProvider";
 import { useHistory, useParams } from "react-router-dom";
 
-export const EventForm = (props) => {
+export const EventForm = () => {
     const { addEvent, getEvents, getEventById, editEvent } = useContext(EventContext)
 
     //for edit, hold on to state of event in this view
@@ -61,7 +61,7 @@ export const EventForm = (props) => {
                     description: event.description,
                     time: event.time,
                     date: event.date,
-                    userId: parseInt(event.userId)
+                    userId: parseInt(localStorage.getItem("nutshell_customer"))
                 })
                     .then(() => history.push("/events"))
             }
@@ -82,20 +82,13 @@ export const EventForm = (props) => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="event">Event description</label>
+                    <label htmlFor="eventDescription">Event description</label>
                     <input type="text
-                    " name="name" id="eventName" className="form-control" onChange={handleControlledInputChange}>
-                        description={event.name}
-                    </input>
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="events">Event:</label>
-                    <input type="text" name="customerId" id="events" className="form-control" onChange={handleControlledInputChange}
+                    " name="name" id="eventDescription" className="form-control"
+                        placeholder="Description"
+                        onChange={handleControlledInputChange}>
                         defaultValue={event.description}
-                    />
-
+                    </input>
                 </div>
             </fieldset>
             <button className="btn btn-primary"
@@ -104,7 +97,7 @@ export const EventForm = (props) => {
                     event.preventDefault() // Prevent browser from submitting the form
                     constructEventObject()
                 }}>
-                {eventId ? <>Save Event</> : <>Add Event</>}</button>
+                {eventId ? "Save Event" : "Create Event"}</button>
         </form>
     )
 };

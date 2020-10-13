@@ -9,18 +9,19 @@ export const EventList = () => {
 
     //useEffect - reach out to the world for something
     useEffect(() => {
-        console.log("EventList: useEffect - getEvents")
         getEvents()
 
     }, [])
     return (
-        <div className="events">
-            {console.log("EventList: Render")}
-            {
-                events.map(event => {
-                    return <EventCard key={event.id} address={event.address} event={event.name} />
-                })
-            }
-        </div>
+        <>
+            <h2>Events</h2>
+            <div className="events">
+                {
+                    events.map(event => {
+                        return <EventCard key={event.id} events={event} />
+                    })
+                }
+            </div>
+        </>
     )
 };

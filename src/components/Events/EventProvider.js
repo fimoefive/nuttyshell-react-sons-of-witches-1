@@ -4,7 +4,7 @@ export const EventContext = createContext();
 
 export const EventProvider = (props) => {
     const [events, setEvents] = useState([]);
-    const [searchTerms, setSearchTerms] = useState();
+    const [searchTerms, setSearchTerms] = useState([]);
 
     const getEvents = () => {
         return fetch('http://localhost:8088/events?_expand=user&_sort=id&_order=DESC')
