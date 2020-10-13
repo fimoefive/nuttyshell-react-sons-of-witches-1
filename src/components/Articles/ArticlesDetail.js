@@ -32,7 +32,7 @@ export const ArticleDetail = () => {
 			<div className="article__summary">{article?.summary}</div>
             <div className="article__URL">{article?.URL}</div>
 			<div className="article__user">Posted by: {article?.user.username}</div>
-			<div className="article__date">Posted on: {article?.date?.split("T")[0]}</div>
+			<div className="article__date">Posted on: {article?.date.split("T")[0]}</div>
 			<button 
 			hidden={!owned}
 			onClick={
