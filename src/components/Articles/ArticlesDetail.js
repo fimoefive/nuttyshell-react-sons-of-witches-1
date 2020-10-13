@@ -6,24 +6,36 @@ import { useParams, useHistory } from "react-router-dom"
 export const ArticleDetail = () => {
 	const { deleteArticle, getArticleById } = useContext(ArticleContext)
 
-	const [article, setArticle] = useState({})
-
+	const [article, setArticle] = useState()
+	
 	const { articleId } = useParams();
 	const history = useHistory();
+
+	const user = parseInt(localStorage.getItem("nutshell_customer"))
+
+	const [owned, setOwned] = useState(false)
+
 
 	useEffect(() => {
 		getArticleById(articleId)
 			.then((response) => {
 				setArticle(response)
+				if(user === response.user.id) {
+					setOwned(true)
+				}	
 			})
 	}, [])
 
 	return (
 		<section className="article">
-			<h3 className="article__name">{article.title}</h3>
-			<div className="animal__summary">{article.summary}</div>
-            <div className="animal__URL">{article.URL}</div>
-			<button onClick={
+			<h3 className="article__name">{article?.title}</h3>
+			<div className="article__summary">{article?.summary}</div>
+            <div className="article__URL">{article?.URL}</div>
+			<div className="article__user">Posted by: {article?.user.username}</div>
+			<div className="article__date">Posted on: {article?.date?.split("T")[0]}</div>
+			<button 
+			hidden={!owned}
+			onClick={
 				() => {
 					deleteArticle(article.id)
 						.then(() => {
@@ -31,7 +43,9 @@ export const ArticleDetail = () => {
 						})
 				}}>Delete Article
 			</button>
-			<button onClick={() => {
+			<button 
+			hidden={!owned}
+			onClick={() => {
 				history.push(`/articles/edit/${article.id}`)
 			}}>Edit</button>
 		</section>
