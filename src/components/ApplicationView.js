@@ -5,6 +5,10 @@ import { ArticlesProvider } from "./Articles/ArticlesProvider"
 import { ArticleSearch } from "./Articles/ArticlesSearch"
 import { ArticlesList } from "./Articles/ArticlesList"
 import { ArticleDetail } from "./Articles/ArticlesDetail"
+import { TasksProvider } from "./Tasks/TasksProvider"
+import { TasksList } from "./Tasks/TasksList"
+import { TasksForm } from "./Tasks/TasksForm"
+import { TasksDetail } from "./Tasks/TasksDetail"
 import { Home } from "./Home"
 
 export const ApplicationViews = () => {
@@ -38,6 +42,30 @@ export const ApplicationViews = () => {
                     <ArticleForm />
                 </Route>
             </ArticlesProvider>
+
+            <TasksProvider>
+                <Route exact path="/tasks">
+                    <TasksList />
+                </Route>
+            </TasksProvider>
+
+            <TasksProvider>
+                <Route exact path="/tasks/create">
+                    <TasksForm />
+                </Route>
+            </TasksProvider>
+
+            <TasksProvider>
+                <Route exact path="/tasks/detail/:taskId(\d+)">
+                    <TasksDetail />
+                </Route>
+            </TasksProvider>
+
+            <TasksProvider>
+                <Route exact path="/tasks/edit/:taskId(\d+)">
+                    <TasksForm />
+                </Route>
+            </TasksProvider>
         </>
     )
 }

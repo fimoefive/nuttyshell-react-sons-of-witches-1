@@ -1,0 +1,51 @@
+import React, { useContext, useEffect, useState } from "react"
+import { TasksContext } from "./TasksProvider"
+import { useParams, useHistory } from "react-router-dom"
+import "./Tasks.css"
+
+export const TasksDetail = () => {
+	const { getTasksById , deleteTasks} = useContext(TasksContext)
+	const [tasks, setTasks] = useState({})
+	const { TasksId } = useParams();
+	const history = useHistory();
+
+	useEffect(() => {
+        console.log("useEffect", TasksId) 
+		getTasksById(TasksId)
+			.then((response) => {
+				setTasks(response)
+			})
+	}, [])
+
+
+
+	return (
+		<section className="tasks">
+			<h3 className="tasksName">{tasks?.title}</h3>
+            <div className="tasksDate">{tasks?.completeBy}</div>
+
+
+			<button onClick={
+				() => {
+					deleteTasks(tasks.id)
+						.then(() => {
+							history.push("/tasks")
+						})
+				}}>Delete Task 
+			</button>
+
+			<button onClick={() => {
+				history.push(`/tasks/edit/${tasks.id}`)
+			}}>Edit</button>
+
+            {/* <button onClick={
+				() => {
+					completeTasks(tasks.id)
+						.then(() => {
+							history.push("/tasks")
+						})
+				}}>Task Complete 
+			</button> */}
+		</section>
+	)
+}
