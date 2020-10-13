@@ -37,6 +37,7 @@ export const ChatForm = () => {
         if (chatId) {
             editChat({
                 id: chat.id,
+                userId: parseInt(localStorage.getItem("nutshell_customer")),
                 message: chat.messageInput
             })
                 .then(() => history.push("/chats"))
