@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { EventContext } from "../Events/EventProvider";
+import { EventContext } from "./EventProvider";
+import "./Event.css";
 import { useHistory, useParams } from "react-router-dom";
 
 export const EventForm = () => {
@@ -70,28 +71,29 @@ export const EventForm = () => {
 
     return (
         <form className="eventForm">
-            <h2 className="eventForm__name">{eventId ? "Edit Event" : "Create Event"}</h2>
+            <h2 className="eventForm__name">{eventId ? `Edit Event ${event.name}` : "Create Event"}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="eventName">Event Name</label>
+                    <label htmlFor="eventName">Event Name:</label>
                     <input type="text" id="eventName" name="name" required autoFocus className="form-control"
-                        placeholder="event name"
+                        placeholder="Event name"
                         onChange={handleControlledInputChange}
                         defaultValue={event.name} />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="eventDescription">Event description</label>
+                    <label htmlFor="description">Event description</label>
                     <input type="text
-                    " name="name" id="eventDescription" className="form-control"
+                    " name="description" id="eventDescription" className="form-control"
                         placeholder="Description"
                         onChange={handleControlledInputChange}>
                         defaultValue={event.description}
                     </input>
                 </div>
             </fieldset>
-            <button className="btn btn-primary"
+            <button type="submit"
+                className="btn btn-primary"
                 disabled={isLoading}
                 onClick={event => {
                     event.preventDefault() // Prevent browser from submitting the form
