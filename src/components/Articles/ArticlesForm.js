@@ -42,7 +42,8 @@ export const ArticleForm = () => {
                     title: article.title,
                     summary: article.summary,
                     URL: article.URL,
-                    userId: parseInt(article.userId)
+                    userId: parseInt(article.userId),
+                    date: new Date()
                 })
                 .then(() => history.push("/articles"))
             }
@@ -51,7 +52,8 @@ export const ArticleForm = () => {
                     title: article.title,
                     summary: article.summary,
                     URL: article.URL,
-                    userId: parseInt(localStorage.getItem("nutshell_customer"))
+                    userId: parseInt(localStorage.getItem("nutshell_customer")),
+                    date: new Date()
                 })
                 .then(() => history.push("/articles"))
             }

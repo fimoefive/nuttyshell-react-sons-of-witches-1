@@ -6,20 +6,25 @@ import { ArticleSearch } from "./Articles/ArticlesSearch"
 import { ArticlesList } from "./Articles/ArticlesList"
 import { ArticleDetail } from "./Articles/ArticlesDetail"
 import { Home } from "./Home"
+import { FriendsList } from "./Friends/FriendsList"
+import { FriendsProvider } from "./Friends/FriendsProvider"
 
 import { ChatProvider } from "./Chat/ChatProvider"
 import { ChatForm } from "./Chat/ChatForm"
 import { ChatList } from "./Chat/ChatList"
 import { ChatDetail } from "./Chat/ChatDetail"
-import { ChatSearch } from "./Chat/ChatSearch"
+
 
 
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <Home />
-            </Route>
+            <FriendsProvider>
+                <Route exact path="/">
+                    <Home />
+                    <FriendsList />
+                </Route>
+            </FriendsProvider>
 
             <ArticlesProvider>
                 <Route exact path="/articles">
