@@ -4,7 +4,6 @@ import { useHistory, useParams } from "react-router-dom";
 
 export const EventForm = (props) => {
     const { addEvent, getEvents, getEventById, editEvent } = useContext(EventContext)
-    const { locations, getLocations } = useContext(LocationContext)
 
     //for edit, hold on to state of event in this view
     const [event, setEvent] = useState({})
@@ -46,7 +45,7 @@ export const EventForm = (props) => {
             setIsLoading(true);
             if (eventId) {
                 //PUT - update
-                updateEvent({
+                editEvent({
                     id: event.id,
                     name: event.name,
                     description: event.description,
@@ -84,22 +83,17 @@ export const EventForm = (props) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="event">Event description</label>
-                    <select type="text
+                    <input type="text
                     " name="name" id="eventName" className="form-control" onChange={handleControlledInputChange}>
-                        <option value="0">Select a location</option>
-                        {locations.map(l => (
-                            <option key={l.id} value={l.id}>
-                                {l.name}
-                            </option>
-                        ))}
-                    </select>
+                        description={event.name}
+                    </input>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="events">Event:</label>
                     <input type="text" name="customerId" id="events" className="form-control" onChange={handleControlledInputChange}
-                        defaultValue={article.URL}
+                        defaultValue={event.description}
                     />
 
                 </div>

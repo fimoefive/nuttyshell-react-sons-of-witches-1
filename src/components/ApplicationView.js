@@ -6,6 +6,11 @@ import { ArticleSearch } from "./Articles/ArticlesSearch"
 import { ArticlesList } from "./Articles/ArticlesList"
 import { ArticleDetail } from "./Articles/ArticlesDetail"
 import { Home } from "./Home"
+import { EventForm } from "./Events/EventForm";
+import { EventProvider } from "./Events/EventProvider";
+import { EventSearch } from "./Events/EventsSearch";
+import { EventList } from "./Events/EventList";
+import { EventDetail } from "./Events/EventsDetail";
 
 export const ApplicationViews = () => {
     return (
@@ -42,7 +47,7 @@ export const ApplicationViews = () => {
             <EventsProvider>
                 <Route exact path="/events">
                     <EventSearch />
-                    <EventsList />
+                    <EventList />
                 </Route>
             </EventsProvider>
 
