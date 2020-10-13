@@ -9,6 +9,13 @@ import { Home } from "./Home"
 import { FriendsList } from "./Friends/FriendsList"
 import { FriendsProvider } from "./Friends/FriendsProvider"
 
+import { ChatProvider } from "./Chat/ChatProvider"
+import { ChatForm } from "./Chat/ChatForm"
+import { ChatList } from "./Chat/ChatList"
+import { ChatDetail } from "./Chat/ChatDetail"
+
+
+
 export const ApplicationViews = () => {
     return (
         <>
@@ -43,6 +50,34 @@ export const ApplicationViews = () => {
                     <ArticleForm />
                 </Route>
             </ArticlesProvider>
+
+
+
+
+            <ChatProvider>
+                <Route exact path="/chats/create">
+                    <ChatForm />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/chats/edit/:chatId(\d+)">
+                    <ChatForm />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/chats">
+                    <ChatList />
+                </Route>
+            </ChatProvider>
+
+            <ChatProvider>
+                <Route exact path="/chats/detail/:chatId(\d+)">
+                    <ChatDetail />
+                </Route>
+            </ChatProvider>
+
         </>
     )
 }
