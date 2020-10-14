@@ -15,10 +15,11 @@ export const EventForm = () => {
     const history = useHistory();
 
     //when field changes, update state. This causes a re-render and updates the view.
-    const handleControlledInputChange = (event) => {
+    const handleControlledInputChange = (e) => {
+
         const newEvent = { ...event }
         //set the property to the new value
-        newEvent[event.target.name] = event.target.value
+        newEvent[e.target.name] = e.target.value
         //updates state
         setEvent(newEvent)
     }
@@ -29,6 +30,7 @@ export const EventForm = () => {
                 getEventById(eventId)
                     .then(event => {
                         setEvent(event)
+                        console.log(event);
                         setIsLoading(false)
                     })
             } else {
@@ -75,7 +77,7 @@ export const EventForm = () => {
                 <div className="form-group">
                     <label htmlFor="event-name">Event Name</label>
                     <input type="text" id="eventName" name="name" required autoFocus className="form-control"
-                        placeholder="Event Name"
+                        placeholder="EventName"
                         onChange={handleControlledInputChange}
                         defaultValue={event.name} />
                 </div>
@@ -92,7 +94,7 @@ export const EventForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="event-date">Event Date</label>
+                    <label htmlFor="e-date">Event Date</label>
                     <input type="date"
                         name="date" id="eventDate" className="form-control"
                         placeholder="Date"
@@ -113,8 +115,8 @@ export const EventForm = () => {
             <button type="submit"
                 className="btn btn-primary"
                 disabled={isLoading}
-                onClick={event => {
-                    event.preventDefault() // Prevent browser from submitting the form
+                onClick={e => {
+                    e.preventDefault() // Prevent browser from submitting the form
                     constructEventObject()
                 }}>
                 {eventId ? "Save Event" : "Create Event"}</button>
