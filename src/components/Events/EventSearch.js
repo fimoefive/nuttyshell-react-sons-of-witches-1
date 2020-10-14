@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { EventContext } from "./EventProvider";
 import "./Event.css";
 
 export const EventSearch = () => {
     const { setSearchTerms } = useContext(EventContext)
+
+    useEffect(() => {
+        setSearchTerms("")
+    }, [])
 
     return (
         <>
@@ -15,4 +19,5 @@ export const EventSearch = () => {
                 }
                 placeholder="Search for an event... " />
         </>
-    )};
+    )
+};

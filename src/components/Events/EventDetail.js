@@ -4,12 +4,12 @@ import "./Event.css";
 import { useParams, useHistory } from "react-router-dom";
 
 export const EventDetail = () => {
-
     const { getEventById, deleteEvent } = useContext(EventContext)
 
     const [event, setEvent] = useState();
-    // const [location, setLocation] = useState({});
+
     const { eventId } = useParams();
+
     const history = useHistory();
 
     const user = parseInt(localStorage.getItem("nutshell_customer"))
@@ -23,7 +23,6 @@ export const EventDetail = () => {
                 if (user === response.user.id) {
                     setOwned(true)
                 }
-                // setLocation(response.location)
             })
     }, [])
 
@@ -32,8 +31,7 @@ export const EventDetail = () => {
             <h3 className="event__name">{event?.name}</h3>
             <div className="event__description">{event?.description}</div>
             <div className="event__time">{event?.time}</div>
-            <div className="event__date">Posted on: {event?.date?.split("T")[0]}</div>
-            {/* <div className="event__location">Location: {location?.name}</div> */}
+            <div className="event__date">Posted on: {event?.date}</div>
             <div className="event__user">Posted by: {event?.user.username}</div>
 
             <button hidden={!owned}

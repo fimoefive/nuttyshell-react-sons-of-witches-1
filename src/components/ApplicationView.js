@@ -5,19 +5,24 @@ import { ArticlesProvider } from "./Articles/ArticlesProvider"
 import { ArticleSearch } from "./Articles/ArticlesSearch"
 import { ArticlesList } from "./Articles/ArticlesList"
 import { ArticleDetail } from "./Articles/ArticlesDetail"
-import { Home } from "./Home";
 import { EventForm } from "./Events/EventForm";
 import { EventProvider } from "./Events/EventProvider";
 import { EventSearch } from "./Events/EventSearch";
 import { EventList } from "./Events/EventList";
 import { EventDetail } from "./Events/EventDetail";
+import { Home } from "./Home"
+import { FriendsList } from "./Friends/FriendsList"
+import { FriendsProvider } from "./Friends/FriendsProvider"
 
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <Home />
-            </Route>
+            <FriendsProvider>
+                <Route exact path="/">
+                    <Home />
+                    <FriendsList />
+                </Route>
+            </FriendsProvider>
 
             <ArticlesProvider>
                 <Route exact path="/articles">
