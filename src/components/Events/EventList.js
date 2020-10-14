@@ -16,14 +16,14 @@ export const EventList = () => {
 
     const history = useHistory();
 
-    // useEffect(() => {
-    //     if (searchTerms !== "") {
-    //         const subset = events.filter(event => event.name.includes(searchTerms.trim()))
-    //         setFilteredEvents(subset)
-    //     } else {
-    //         setFilteredEvents(events)
-    //     }
-    // }, [searchTerms, events])
+    useEffect(() => {
+        if (searchTerms !== "") {
+            const subset = events.filter(event => event.name.includes(searchTerms.trim()))
+            setFilteredEvents(subset)
+        } else {
+            setFilteredEvents(events)
+        }
+    }, [searchTerms, events])
 
     return (
         <>

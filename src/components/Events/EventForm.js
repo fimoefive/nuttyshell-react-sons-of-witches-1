@@ -73,7 +73,7 @@ export const EventForm = () => {
             <h2 className="eventForm__name">{eventId ? "Edit Event" : "Create Event"}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="eventName">Event Name:</label>
+                    <label htmlFor="event-name">Event Name</label>
                     <input type="text" id="eventName" name="name" required autoFocus className="form-control"
                         placeholder="Event Name"
                         onChange={handleControlledInputChange}
@@ -82,6 +82,7 @@ export const EventForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
+                    <label htmlFor="event-time">Event Time</label>
                     <input type="time"
                         name="time" id="eventTime" className="form-control"
                         placeholder="Time"
@@ -91,6 +92,7 @@ export const EventForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
+                    <label htmlFor="event-date">Event Date</label>
                     <input type="date"
                         name="date" id="eventDate" className="form-control"
                         placeholder="Date"
@@ -100,6 +102,7 @@ export const EventForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
+                    <label htmlFor="event-description">Event Description</label>
                     <input type="text"
                         name="description" id="eventDescription" className="form-control"
                         placeholder="Description"
