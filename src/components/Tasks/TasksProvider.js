@@ -24,18 +24,19 @@ export const TasksProvider = (props) => {
     }
 
     const getTasksById = (id) => {
-        return fetch(`http://localhost:8088/tasks/detail/${id}`)
+        return fetch(`http://localhost:8088/tasks/${id}`)
             .then(response => response.json())
     }
 
     const deleteTasks = tasksId => {
-        return fetch(`http://localhost:8088/tasks/detail/${tasksId}`, {
+        return fetch(`http://localhost:8088/tasks/${tasksId}`, {
             method: "DELETE"
         })
+        .then(getTasks)
     }
 
     const editTasks = tasks => {
-        return fetch(`http://localhost:8088/tasks/edit/${tasks.id}`, {
+        return fetch(`http://localhost:8088/tasks/${tasks.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

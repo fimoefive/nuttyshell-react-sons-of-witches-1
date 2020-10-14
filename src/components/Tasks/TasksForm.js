@@ -13,7 +13,7 @@ export const TasksForm = () => {
     const handleControlledInputChange = (event) => {
         const newTasks = {...tasks}
         newTasks[event.target.title] = event.target.value
-        console.log("newTasks: ", newTasks);
+        // console.log("newTasks: ", newTasks);
         setTasks(newTasks)
     }
 
@@ -50,7 +50,7 @@ export const TasksForm = () => {
                 addTasks({
                     title: tasks.title,
                     completeBy: tasks.completeBy,
-                    complete: tasks.complete,
+                    complete: tasks.complete = false,
                     userId: parseInt(localStorage.getItem("nutshell_customer"))
                 })
                 .then(() => history.push("/tasks"))
@@ -64,7 +64,7 @@ export const TasksForm = () => {
 
     return (
         <form className="tasksForm">
-            <h2 className="tasksForm_title">{TasksId ? "Edit Task" : "Create Task"}</h2>
+            <h2 className="tasksForm_title">{TasksId ? "Edit Task:" : "Create Task:"}</h2>
 
             <fieldset>
                 <div className="from-group">
@@ -92,7 +92,8 @@ export const TasksForm = () => {
                     event.preventDefault() 
                     constructTasksObject()
                 }}>
-            {TasksId ? "Save Task" : "Create Task"}</button>
+            {/* {TasksId ? "Save Task" : "Create Task"} */}
+            Create Task:</button>
         </form>
     )
 }

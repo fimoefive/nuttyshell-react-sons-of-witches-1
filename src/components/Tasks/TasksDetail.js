@@ -15,9 +15,9 @@ export const TasksDetail = () => {
 		// if (tasksId !== undefined)
 		{
 			getTasksById(tasksId)
-			.then((response) => {
-				setTasks(response)
-			})}
+				.then((response) => {
+					setTasks(response)
+				})}
 	}, [getTasksById, setTasks, tasksId])
 
 

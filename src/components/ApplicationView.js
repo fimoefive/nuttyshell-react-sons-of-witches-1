@@ -43,6 +43,9 @@ export const ApplicationViews = () => {
                 </Route>
             </ArticlesProvider>
 
+
+
+
             <TasksProvider>
                 <Route exact path="/tasks">
                     <TasksList />

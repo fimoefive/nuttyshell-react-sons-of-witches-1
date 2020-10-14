@@ -7,22 +7,22 @@ import "./Tasks.css"
 export const TasksList = () => {
     const { tasks, getTasks, searchTerms } = useContext(TasksContext)
     const [ filteredTasks, setFilteredTasks ] = useState([])
-
+    const history = useHistory()
 
     useEffect(() => {
         getTasks()
     }, [])
 
-    const history = useHistory()
+
 
     useEffect(() => {
         if(searchTerms !== "") {
             const subset = tasks.filter(task => {
                 const newVar = task.title.toLowerCase()
-                console.log(searchTerms)
-                console.log(newVar)
-                newVar.includes(searchTerms.toLowerCase().trim())})
-            console.log(subset)
+                // console.log(searchTerms)
+                // console.log(newVar)
+                newVar.includes(searchTerms)})
+            // console.log(subset)
                 setFilteredTasks(subset)
         } else {
             setFilteredTasks(tasks)
