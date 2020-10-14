@@ -6,15 +6,20 @@ import { FriendsList } from "./FriendsList.js"
 
 export const FriendCard = ({ friends }) => {
 
-    const { deleteFriend } = useContext(FriendContext)
+    const { deleteFriend, getFriends } = useContext(FriendContext)
     const history = useHistory()
-    
+    const handleDelete = (x) => {
+        deleteFriend(x).then(getFriends).then(e => {
+            history.push("/articles")
+            history.push("/")
+        })
+    }
         return (
             <section className="friends">
                 <div className="friend_name">{friends.user.username}</div>
                 <button onClick={
                     () => {
-                        deleteFriend(friends.id)
+                        handleDelete(friends.id)
                     }}>Delete Friend
                     </button>
             </section>

@@ -9,7 +9,10 @@ export const FriendsProvider = (props) => {
     const getFriends = () => {
         return fetch(`http://localhost:8088/friends?_expand=user`)
             .then(response => response.json())
-            // .then(setFriends)
+            .then(res => {
+                setFriends(res)
+            return res
+        })
     }
 
     const addFriend = (x) => {
@@ -29,9 +32,14 @@ export const FriendsProvider = (props) => {
         })
     }
 
+    const getUsers = () => {
+        return fetch(`http://localhost:8088/users`)
+            .then(res => res.json())
+    }
+
     return (
         <FriendContext.Provider value={{
-            friends, getFriends, deleteFriend, addFriend, searchTerms, setSearchTerms
+            friends, getUsers, getFriends, deleteFriend, addFriend, searchTerms, setSearchTerms
         }}>
             {props.children}
         </FriendContext.Provider>
