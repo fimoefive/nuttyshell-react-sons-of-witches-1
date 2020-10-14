@@ -49,6 +49,6 @@ export const ArticlesProvider = (props) => {
             articles, getArticles, editArticle, deleteArticle, addArticle, getArticleById, setSearchTerms, searchTerms
         }}>
             {props.children}
-            </ArticleContext.Provider>
+        </ArticleContext.Provider>
     )
 }
