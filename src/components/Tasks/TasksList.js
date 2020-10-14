@@ -5,14 +5,29 @@ import { useHistory } from "react-router-dom"
 import "./Tasks.css"
 
 export const TasksList = () => {
-    const { Tasks, getTasks, searchTerms } = useContext(TasksContext)
+    const { tasks, getTasks, searchTerms } = useContext(TasksContext)
     const [ filteredTasks, setFilteredTasks ] = useState([])
+
 
     useEffect(() => {
         getTasks()
     }, [])
 
     const history = useHistory()
+
+    useEffect(() => {
+        if(searchTerms !== "") {
+            const subset = tasks.filter(task => {
+                const newVar = task.title.toLowerCase()
+                console.log(searchTerms)
+                console.log(newVar)
+                newVar.includes(searchTerms.toLowerCase().trim())})
+            console.log(subset)
+                setFilteredTasks(subset)
+        } else {
+            setFilteredTasks(tasks)
+        }
+    }, [searchTerms, tasks, setFilteredTasks])
 
     return (
         <>
@@ -22,7 +37,10 @@ export const TasksList = () => {
             </button>
             <div className="tasks">
                 {
-                    filteredTasks.map(tasks => {return <TasksCard key={tasks.id} tasks={tasks} />})
+                    filteredTasks.map(tasks => {
+                        {/* console.log(tasks) */}
+                        return <TasksCard key={tasks.id} tasks={tasks} />
+                        })
                 }
             </div>
         </>

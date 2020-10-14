@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom"
 import "./Tasks.css"
 
 export const TasksForm = () => {
-    const { addTasks, getTasksById, editTasks, getTasks, completeTasks } = useContext(TasksContext)
+    const { addTasks, getTasksById, editTasks, getTasks, } = useContext(TasksContext)
     const [tasks, setTasks] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const {TasksId} = useParams()
@@ -21,15 +21,15 @@ export const TasksForm = () => {
         getTasks().then(() => {
             if(TasksId) {
                 getTasksById(TasksId)
-                .then(task => {
-                    setTasks(task)
+                .then(tasks => {
+                    setTasks(tasks)
                     setIsLoading(false)
                 })
             }else {
                 setIsLoading(false)
             }
         })
-    }, [])
+    }, [getTasks, getTasksById, setTasks, setIsLoading, TasksId, tasks])
 
     const constructTasksObject = () => {
         if(parseInt(tasks.title) === 0) {

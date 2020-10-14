@@ -3,11 +3,11 @@ import React, { useState, createContext } from "react"
 export const TasksContext = createContext();
 
 export const TasksProvider = (props) => {
-    const [Tasks, setTasks] = useState([]);
-    const [searchTerms, setSearchTerms] = useState();
+    const [tasks, setTasks] = useState([]);
+    const [searchTerms, setSearchTerms] = useState("");
 
     const getTasks = () => {
-        return fetch(`http://localhost:8088/tasks?_expand=user`)
+        return fetch(`http://localhost:8088/tasks`)
             .then(response => response.json())
             .then(setTasks)
     }
@@ -22,31 +22,32 @@ export const TasksProvider = (props) => {
         })
             .then(getTasks)
     }
+
     const getTasksById = (id) => {
-        return fetch(`http://localhost:8088/tasks/${id}?_expand=user`)
+        return fetch(`http://localhost:8088/tasks/detail/${id}`)
             .then(response => response.json())
     }
 
-    const deleteTasks = TasksId => {
-        return fetch(`http://localhost:8088/tasks/${TasksId}`, {
+    const deleteTasks = tasksId => {
+        return fetch(`http://localhost:8088/tasks/detail/${tasksId}`, {
             method: "DELETE"
         })
     }
 
-    const editTasks = Task => {
-        return fetch(`http://localhost:8088/tasks/${Tasks.id}`, {
+    const editTasks = tasks => {
+        return fetch(`http://localhost:8088/tasks/edit/${tasks.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(Task)
+            body: JSON.stringify(tasks)
         })
             .then(getTasks)
     }
 
     return (
         <TasksContext.Provider value={{
-            Tasks, getTasks, editTasks, deleteTasks, addTasks, getTasksById, setSearchTerms, searchTerms
+            tasks, getTasks, editTasks, deleteTasks, addTasks, getTasksById, setSearchTerms, searchTerms
         }}>
             {props.children}
             </TasksContext.Provider>
