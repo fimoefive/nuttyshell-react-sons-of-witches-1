@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom"
+import { Route } from "react-router-dom";
 import { ArticleForm } from "./Articles/ArticlesForm"
 import { ArticlesProvider } from "./Articles/ArticlesProvider"
 import { ArticleSearch } from "./Articles/ArticlesSearch"
