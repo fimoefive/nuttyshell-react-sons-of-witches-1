@@ -1,27 +1,30 @@
 import React, { useContext, useEffect, useState } from "react"
 import { FriendContext } from "./FriendsProvider"
 import { FriendCard } from "./FriendsCard"
-import { useHistory } from "react-router-dom"
 import "./Friends.css"
+import { useHistory } from "react-router-dom"
 
 export const FriendsList = () => {
-    const { getFriends, searchTerms, getUserById } = useContext(FriendContext)
-    const [filteredFriends, setFilteredFriends] = useState([])
-    const [friends, setFriends ] = useState([])
+    const { getFriends, friends } = useContext(FriendContext)
+    const [friendList, setFriends ] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         getFriends().then(res => {
             const x = res.filter(user => user.activeUserId === parseInt(localStorage.getItem("nutshell_customer")))
             setFriends(x)
         })
-    }, [friends])
+    }, [])
 
     return (
         <>
             <h2>Friends List</h2>
+            <button className="add_friend" onClick={() => {
+                history.push("/friends/create")
+            }}>Add Friend</button>
             <div className="friends">
                 {
-                    friends.map(friend => {
+                    friendList.map(friend => {
                         return <FriendCard key={friend.id} friends={friend} />
                     })
                 }

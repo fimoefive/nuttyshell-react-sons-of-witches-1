@@ -13,6 +13,7 @@ import { ChatProvider } from "./Chat/ChatProvider"
 import { ChatForm } from "./Chat/ChatForm"
 import { ChatList } from "./Chat/ChatList"
 import { ChatDetail } from "./Chat/ChatDetail"
+import { FriendForm } from "./Friends/FriendsForm"
 
 
 
@@ -23,6 +24,12 @@ export const ApplicationViews = () => {
                 <Route exact path="/">
                     <Home />
                     <FriendsList />
+                </Route>
+            </FriendsProvider>
+
+            <FriendsProvider>
+                <Route exact path="/friends/create">
+                    <FriendForm />
                 </Route>
             </FriendsProvider>
 
